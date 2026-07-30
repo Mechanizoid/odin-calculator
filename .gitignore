@@ -1,0 +1,29 @@
+# Emacs auto-save files (e.g., #filename)
+\#*\#
+.*\#
+
+# Emacs backup files
+*~
+
+# Emacs lock files (.e.g., .#filename)
+.\#*
+
+# Operating System Files
+.DS_Store
+Thubs.db
+Desktop.ini
+
+# Editor and IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build and Output Directories (if using a bundler or generator)
+/dist/
+/build/
+/public/
+
+# Logs and Temporary Files
+*.log
+.cache/
