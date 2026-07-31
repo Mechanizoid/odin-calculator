@@ -41,4 +41,15 @@ function operate(firstNumber, secondNumber, operator) {
 // operand variables
 let [firstNumber, operand, secondNumber] = Array(3).fill(undefined);
 
+const buttons = document.querySelector('#calculator-button-container');
+
+buttons.addEventListener('click', (event) => {
+  const buttonClicked = event.target.closest('.calculator-button');
+
+  if(!buttonClicked)
+    return;
+
+  console.log(`Button clicked: ${buttonClicked.textContent}`);
+});
+
 console.log('hello, world!');
