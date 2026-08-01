@@ -37,30 +37,35 @@ function operate(firstNumber, secondNumber, operator) {
   }
 }
 
+function toggleNegative() {
+  if (display.textContent[0] === '-') {
+    display.textContent = display.textContent.slice(1);
+  } else {
+    display.textContent = '-' + display.textContent;
+  }
+}
+
 function evaluate(key) {
   switch(key) {
-  case '0':
-  case '1':
-  case '2':
-  case '3':
-  case '4':
-  case '5':
-  case '6':
-  case '7':
-  case '8':
-  case '9':
-  case '.':
+  case '0': case '1': case '2': case '3': case '4': case '5':
+  case '6': case '7': case '8': case '9': case '.':
     display.textContent = display.textContent + key;
     break;
-  case '*':
-  case '/':
-  case '+':
-  case '-':
+  case '(-)':
+    toggleNegative();
+    break;
+  case '*': case '/': case '+': case '-':
     console.log('Operator entered...');
     display.textContent = '';
     break;
   case '=':
-    console.log('Evaluating math operation...')
+    console.log('Evaluating math operation...');
+    display.textContent = '';
+    break;
+  case 'Del':
+    display.textContent = display.textContent.slice(0, -1);
+    break;
+  case 'AC':
     display.textContent = '';
     break;
   }
