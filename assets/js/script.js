@@ -104,11 +104,11 @@ let [firstOperand, secondOperand, operator] = [null, null, null];
 let resultDisplayed = true;
 let result = null;
 
-const buttons = document.querySelector('#calculator-button-container');
+const buttons = document.querySelector('#ui-btn-container');
 const display = document.querySelector('#lcd-display');
 
 buttons.addEventListener('click', (event) => {
-  const buttonClicked = event.target.closest('.calculator-button');
+  const buttonClicked = event.target.closest('.ui-btn');
 
   if(!buttonClicked)
     return;
