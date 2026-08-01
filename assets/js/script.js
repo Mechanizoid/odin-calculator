@@ -45,7 +45,14 @@ function toggleNegative() {
   }
 }
 
-function evaluate(key) {
+function clearAll() {
+  firstOperand = null;
+  secondOperand = null,
+  operator = null;
+  display.textContent = '';
+}
+
+function processKey(key) {
   switch(key) {
   case '0': case '1': case '2': case '3': case '4': case '5':
   case '6': case '7': case '8': case '9': case '.':
@@ -54,26 +61,23 @@ function evaluate(key) {
   case '(-)':
     toggleNegative();
     break;
-  case '*': case '/': case '+': case '-':
+  case '*': case '/': case '+': case '-': case '=':
     console.log('Operator entered...');
-    display.textContent = '';
-    break;
-  case '=':
-    console.log('Evaluating math operation...');
-    display.textContent = '';
+    
     break;
   case 'Del':
     display.textContent = display.textContent.slice(0, -1);
     break;
   case 'AC':
-    display.textContent = '';
+    clearAll();
     break;
   }
 }
 
 
 // operand variables
-let [firstNumber, operand, secondNumber] = Array(3).fill(undefined);
+//let [firstNumber, operand, secondNumber] = Array(3).fill(undefined);
+let [firstOperand, secondOperand, operator] = [null, null, null];
 
 const buttons = document.querySelector('#calculator-button-container');
 const display = document.querySelector('#lcd-display');
@@ -85,7 +89,7 @@ buttons.addEventListener('click', (event) => {
     return;
 
   console.log(`Button clicked: ${buttonClicked.textContent}`);
-  evaluate(buttonClicked.textContent);
+  processKey(buttonClicked.textContent);
 });
 
 console.log('hello, world!');
