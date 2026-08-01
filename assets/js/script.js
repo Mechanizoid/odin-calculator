@@ -33,7 +33,7 @@ function operate(firstNumber, secondNumber, operator) {
   case '/':
     return divide(firstNumber, secondNumber);
   default:
-    throw new Error('Invalid operator');
+    throw new Error(`Invalid operator: ${operator}`);
   }
 }
 
@@ -56,14 +56,35 @@ function processKey(key) {
   switch(key) {
   case '0': case '1': case '2': case '3': case '4': case '5':
   case '6': case '7': case '8': case '9': case '.':
+    if (resultDisplayed) {
+      resultDisplayed = false;
+      display.textContent = '';
+    }
     display.textContent = display.textContent + key;
     break;
   case '(-)':
     toggleNegative();
     break;
-  case '*': case '/': case '+': case '-': case '=':
-    console.log('Operator entered...');
+  case '*': case '/': case '+': case '-':
+    if (!secondOperand) {
+      firstOperand = Number(display.textContent);
+      operator = key;
+      resultDisplayed = true;
+      break;
+    }
+  case '=':
+    if (!secondOperand) {
+      secondOperand = Number(display.textContent);
+    }
     
+    result = operate(firstOperand, secondOperand, operator);
+    display.textContent = result;
+    resultDisplayed = true;
+
+    if (key != '=') {
+      operator = key;
+      firstOperand = result;
+    }
     break;
   case 'Del':
     display.textContent = display.textContent.slice(0, -1);
@@ -78,6 +99,8 @@ function processKey(key) {
 // operand variables
 //let [firstNumber, operand, secondNumber] = Array(3).fill(undefined);
 let [firstOperand, secondOperand, operator] = [null, null, null];
+let resultDisplayed = true;
+let result = null;
 
 const buttons = document.querySelector('#calculator-button-container');
 const display = document.querySelector('#lcd-display');
