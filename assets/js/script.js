@@ -80,6 +80,8 @@ function processKey(key) {
       result = operate(firstOperand, secondOperand, operator);
       display.textContent = result;
       resultDisplayed = true;
+      // clear operators and operands for next input
+      [firstOperand, secondOperand, operator] = [null, null, null];
 
       if (key != '=') {
         operator = key;
