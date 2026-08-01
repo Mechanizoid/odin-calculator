@@ -37,6 +37,35 @@ function operate(firstNumber, secondNumber, operator) {
   }
 }
 
+function evaluate(key) {
+  switch(key) {
+  case '0':
+  case '1':
+  case '2':
+  case '3':
+  case '4':
+  case '5':
+  case '6':
+  case '7':
+  case '8':
+  case '9':
+  case '.':
+    display.textContent = display.textContent + key;
+    break;
+  case '*':
+  case '/':
+  case '+':
+  case '-':
+    console.log('Operator entered...');
+    display.textContent = '';
+    break;
+  case '=':
+    console.log('Evaluating math operation...')
+    display.textContent = '';
+    break;
+  }
+}
+
 
 // operand variables
 let [firstNumber, operand, secondNumber] = Array(3).fill(undefined);
@@ -51,7 +80,7 @@ buttons.addEventListener('click', (event) => {
     return;
 
   console.log(`Button clicked: ${buttonClicked.textContent}`);
-  display.textContent = display.textContent + ' ' + buttonClicked.textContent;
+  evaluate(buttonClicked.textContent);
 });
 
 console.log('hello, world!');
