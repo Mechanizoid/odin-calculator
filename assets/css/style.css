@@ -64,5 +64,10 @@ body {
 }
 
 .ui-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
 
+.ac-btn {
+  grid-column: span 2;
 }
