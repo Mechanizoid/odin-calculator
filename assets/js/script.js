@@ -42,6 +42,7 @@ function operate(firstNumber, secondNumber, operator) {
 let [firstNumber, operand, secondNumber] = Array(3).fill(undefined);
 
 const buttons = document.querySelector('#calculator-button-container');
+const display = document.querySelector('#lcd-display');
 
 buttons.addEventListener('click', (event) => {
   const buttonClicked = event.target.closest('.calculator-button');
@@ -50,6 +51,7 @@ buttons.addEventListener('click', (event) => {
     return;
 
   console.log(`Button clicked: ${buttonClicked.textContent}`);
+  display.textContent = display.textContent + ' ' + buttonClicked.textContent;
 });
 
 console.log('hello, world!');
