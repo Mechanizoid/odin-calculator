@@ -57,13 +57,14 @@ function processKey(key) {
   let secondOperand = null;
 
   switch (key) {
-    case '0': case '1': case '2': case '3': case '4': case '5':
-    case '6': case '7': case '8': case '9':
+    case '0': case '1': case '2': case '3': case '4':
+    case '5': case '6': case '7': case '8': case '9':
       if (resultDisplayed) {
         resultDisplayed = false;
         display.textContent = '';
       }
-      display.textContent = display.textContent + key;
+
+      display.textContent = (display.textContent + key).replace(/^0+(?=\d)/, '');
       break;
     case '.':
       if (resultDisplayed) {
