@@ -136,8 +136,6 @@ buttons.addEventListener('click', (event) => {
   if(!buttonClicked)
     return;
 
-  console.log(`Button clicked: ${buttonClicked.textContent}`);
   processKey(buttonClicked.textContent);
 });
 
-console.log('hello, world!');
