@@ -79,14 +79,14 @@ function processKey(key) {
       }
       break;
     case '*': case '/': case '+': case '-':
-      if (!firstOperand && display.textContent != 'Err') {
+      if (firstOperand === null && display.textContent != 'Err') {
         firstOperand = Number(display.textContent);
         operator = key;
         resultDisplayed = true;
         break;
       }
     case '=':
-      if (firstOperand) {
+      if (firstOperand != null) {
         secondOperand = Number(display.textContent);
 
         try {
