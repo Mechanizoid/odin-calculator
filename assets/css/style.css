@@ -70,6 +70,7 @@ body {
   margin: 4px;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  gap: 8px;
 }
 
 .ac-btn {
@@ -77,5 +78,33 @@ body {
 }
 
 .ui-btn {
-  font-size: 44px;
+  /* remove default browser styles */
+  background: none;
+  border: none;
+  outline: none;
+  /* Define shape and spacing */
+  padding: 12px 24px;
+  border-radius: 6px;
+  display: inline-block;
+  cursor: pointer;
+  /* colors and typography */
+  background-color: #5C3D0B;
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 600;
+  text-align: center;
+  /* smooth animations */
+  transition: all 0.2s ease-in-out;
+}
+
+.ui-btn:hover {
+  background-color: #87590F;
+  transform: translatey(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15)
+}
+
+.ui-btn:active {
+  background-color: #4D3105;
+  transform: translateY(1px);
+  box-shadow: 0 2px, 6px rgba(0, 0, 0, 0.1);
 }
