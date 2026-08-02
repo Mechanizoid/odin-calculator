@@ -65,7 +65,10 @@ function processKey(key) {
       display.textContent = display.textContent + key;
       break;
     case '.':
-      if (!display.textContent.includes('.')) {
+      if (resultDisplayed) {
+        resultDisplayed = false;
+        display.textContent = '0.';
+      } else if (!display.textContent.includes('.')) {
         display.textContent = display.textContent + key;
       }
       break;
