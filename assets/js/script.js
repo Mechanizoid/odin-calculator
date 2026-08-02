@@ -79,7 +79,7 @@ function processKey(key) {
       }
       break;
     case '*': case '/': case '+': case '-':
-      if (!firstOperand) {
+      if (!firstOperand && display.textContent != 'Err') {
         firstOperand = Number(display.textContent);
         operator = key;
         resultDisplayed = true;
@@ -88,8 +88,14 @@ function processKey(key) {
     case '=':
       if (firstOperand) {
         secondOperand = Number(display.textContent);
-        result = operate(firstOperand, secondOperand, operator);
-        display.textContent = +result.toFixed(8);
+
+        try {
+          result = operate(firstOperand, secondOperand, operator);
+          display.textContent = +result.toFixed(8);
+        } catch (e) {
+          console.error(`Invalid operation: ${e.message}`);
+          display.textContent = 'Err';
+        }
         resultDisplayed = true;
 
         // clear operators and operands for next input
@@ -97,7 +103,7 @@ function processKey(key) {
         operator = null;
       }
 
-      if (key != '=') {
+      if (key != '=' && display.textContent != 'Err') {
         operator = key;
         firstOperand = result;
       }
