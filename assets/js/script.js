@@ -47,12 +47,14 @@ function toggleNegative() {
 
 function clearAll() {
   firstOperand = null;
-  secondOperand = null,
   operator = null;
   display.textContent = '';
 }
 
 function processKey(key) {
+  let result = null;
+  let secondOperand = null;
+
   switch(key) {
     case '0': case '1': case '2': case '3': case '4': case '5':
     case '6': case '7': case '8': case '9': case '.':
@@ -66,22 +68,23 @@ function processKey(key) {
       toggleNegative();
       break;
     case '*': case '/': case '+': case '-':
-      if (!secondOperand) {
+      if (!firstOperand) {
         firstOperand = Number(display.textContent);
         operator = key;
         resultDisplayed = true;
         break;
       }
     case '=':
-      if (!secondOperand) {
+      if (firstOperand) {
         secondOperand = Number(display.textContent);
-      }
+        result = operate(firstOperand, secondOperand, operator);
+        display.textContent = +result.toFixed(8);
+        resultDisplayed = true;
 
-      result = operate(firstOperand, secondOperand, operator);
-      display.textContent = +result.toFixed(8);
-      resultDisplayed = true;
-      // clear operators and operands for next input
-      [firstOperand, secondOperand, operator] = [null, null, null];
+        // clear operators and operands for next input
+        firstOperand = null;
+        operator = null;
+      }
 
       if (key != '=') {
         operator = key;
@@ -99,10 +102,7 @@ function processKey(key) {
 
 
 // operand variables
-//let [firstNumber, operand, secondNumber] = Array(3).fill(undefined);
-let [firstOperand, secondOperand, operator] = [null, null, null];
-let resultDisplayed = true;
-let result = null;
+let resultDisplayed = true, firstOperand = null, operator = null;
 
 const buttons = document.querySelector('#ui-btn-container');
 const display = document.querySelector('#lcd-display');
