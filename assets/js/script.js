@@ -48,7 +48,8 @@ function toggleNegative() {
 function clearAll() {
   firstOperand = null;
   operator = null;
-  display.textContent = '';
+  resultDisplayed = true;
+  display.textContent = '0';
 }
 
 function processKey(key) {
@@ -102,7 +103,13 @@ function processKey(key) {
       }
       break;
     case 'Del':
-      display.textContent = display.textContent.slice(0, -1);
+      if (!resultDisplayed) {
+        display.textContent = display.textContent.slice(0, -1);
+
+        if (display.textContent === '') {
+          display.textContent = '0';
+        }
+      }
       break;
     case 'AC':
       clearAll();
