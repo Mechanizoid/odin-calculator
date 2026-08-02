@@ -57,12 +57,17 @@ function processKey(key) {
 
   switch (key) {
     case '0': case '1': case '2': case '3': case '4': case '5':
-    case '6': case '7': case '8': case '9': case '.':
+    case '6': case '7': case '8': case '9':
       if (resultDisplayed) {
         resultDisplayed = false;
         display.textContent = '';
       }
       display.textContent = display.textContent + key;
+      break;
+    case '.':
+      if (!display.textContent.includes('.')) {
+        display.textContent = display.textContent + key;
+      }
       break;
     case '(-)':
       if (!resultDisplayed) {
